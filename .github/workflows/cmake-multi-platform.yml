@@ -78,10 +78,10 @@ jobs:
       shell: bash
       run: |
         # Set executable name based on OS
-        executable="Memory_Segments"  # Start with base executable name
+        executable="memory_segments"  # Start with base executable name
 
         if [ "$RUNNER_OS" == "Windows" ]; then
-          executable="Memory_Segments.exe"  # Add .exe for Windows
+          executable="memory_segments.exe"  # Add .exe for Windows
           # On Windows, we should ensure that we run in the correct directory
           executable_path="${{ github.workspace }}\\build\\${{ matrix.build_type }}\\$executable"   
         else

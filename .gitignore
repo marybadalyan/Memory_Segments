@@ -1,1 +1,5 @@
-build
+# Ignore everything in build/
+build/*
+
+# Track all analysis output
+!analysis/

@@ -22,9 +22,9 @@ if(MSVC)
 elseif(UNIX)
     add_custom_target(elf_info ALL
         COMMAND ${CMAKE_COMMAND} -E echo "Dumping ELF info (Unix)"
-        COMMAND readelf -S $<TARGET_FILE:memory_segments> > ${CMAKE_BINARY_DIR}/memory_segments_headers.txt
-        COMMAND objdump -t $<TARGET_FILE:memory_segments> > ${CMAKE_BINARY_DIR}/memory_segments_symbols.txt
-        COMMAND size $<TARGET_FILE:memory_segments> > ${CMAKE_BINARY_DIR}/memory_segments_size.txt
+        COMMAND ${CMAKE_COMMAND} -E sh -c "readelf -S '$<TARGET_FILE:memory_segments>' > '${CMAKE_BINARY_DIR}/memory_segments_headers.txt'"
+        COMMAND ${CMAKE_COMMAND} -E sh -c "objdump -t '$<TARGET_FILE:memory_segments>' > '${CMAKE_BINARY_DIR}/memory_segments_symbols.txt'"
+        COMMAND ${CMAKE_COMMAND} -E sh -c "size '$<TARGET_FILE:memory_segments>' > '${CMAKE_BINARY_DIR}/memory_segments_size.txt'"
         DEPENDS memory_segments
     )
 else()

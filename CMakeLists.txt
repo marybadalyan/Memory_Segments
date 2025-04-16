@@ -19,11 +19,8 @@ if(MSVC)
         COMMAND cmd /c "dumpbin /all \"$<TARGET_FILE:memory_segments>\" > \"${CMAKE_BINARY_DIR}/memory_segments_all.txt\""
         DEPENDS memory_segments
     )
-elseif(UNIX)
-    add_custom_command(
-        OUTPUT ${CMAKE_BINARY_DIR}/memory_segments_headers.txt
-               ${CMAKE_BINARY_DIR}/memory_segments_symbols.txt
-               ${CMAKE_BINARY_DIR}/memory_segments_size.txt
+else()
+    add_custom_command(dumpbin_info ALL
         COMMAND ${CMAKE_COMMAND} -E echo "Dumping ELF info (Unix)"
         COMMAND readelf -S $<TARGET_FILE:memory_segments> > ${CMAKE_BINARY_DIR}/memory_segments_headers.txt
         COMMAND objdump -t $<TARGET_FILE:memory_segments> > ${CMAKE_BINARY_DIR}/memory_segments_symbols.txt
@@ -31,10 +28,4 @@ elseif(UNIX)
         DEPENDS memory_segments
         COMMENT "Generating Linux ELF info"
     )
-
-add_custom_target(elf_info ALL
-        DEPENDS ${CMAKE_BINARY_DIR}/memory_segments_headers.txt
-    )
-else()
-    message(FATAL_ERROR "Unsupported platform for post-build analysis.")
 endif()

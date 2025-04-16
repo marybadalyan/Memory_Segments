@@ -79,26 +79,22 @@ jobs:
       run: |
         # Set executable name based on OS
         executable="Memory_Segments"  # Start with base executable name
-        
+
         if [ "$RUNNER_OS" == "Windows" ]; then
           executable="Memory_Segments.exe"  # Add .exe for Windows
-          executable_path="${{ github.workspace }}\\build\\${{ matrix.build_type }}\\$executable"  # Windows path
+          # On Windows, we should ensure that we run in the correct directory
+          executable_path="${{ github.workspace }}\\build\\${{ matrix.build_type }}\\$executable"   
         else
-          executable_path="${{ github.workspace }}/build/${{ matrix.build_type }}/$executable"  # Linux path
+          executable_path="${{ github.workspace }}/build/${{ matrix.build_type }}/$executable"   # For Linux/Ubuntu
         fi
-        
-        # Debugging: Print executable path
-        echo "Executable path is: $executable_path"
-        
+
         # Check if the file exists before trying to run it
         echo "Checking if executable exists: $executable_path"
         if [ -f "$executable_path" ]; then
           echo "Executable found, running it"
           # Run executable based on the platform
-          "$executable_path"
+          "$executable_path" 
         else
           echo "Executable not found: $executable_path"
           exit 1  # Fail if the executable isn't found
         fi
-    
-        

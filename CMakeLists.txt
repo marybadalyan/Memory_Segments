@@ -20,15 +20,20 @@ if(MSVC)
         DEPENDS memory_segments
     )
 elseif(UNIX)
-    # Get the full path to the built binary and store in a variable
-    get_target_property(MEM_SEG_PATH memory_segments LOCATION)
-
-    add_custom_target(elf_info ALL
+    add_custom_command(
+        OUTPUT ${CMAKE_BINARY_DIR}/memory_segments_headers.txt
+               ${CMAKE_BINARY_DIR}/memory_segments_symbols.txt
+               ${CMAKE_BINARY_DIR}/memory_segments_size.txt
         COMMAND ${CMAKE_COMMAND} -E echo "Dumping ELF info (Unix)"
-        COMMAND readelf -S "${MEM_SEG_PATH}" > "${CMAKE_BINARY_DIR}/memory_segments_headers.txt"
-        COMMAND objdump -t "${MEM_SEG_PATH}" > "${CMAKE_BINARY_DIR}/memory_segments_symbols.txt"
-        COMMAND size "${MEM_SEG_PATH}" > "${CMAKE_BINARY_DIR}/memory_segments_size.txt"
+        COMMAND readelf -S $<TARGET_FILE:memory_segments> > ${CMAKE_BINARY_DIR}/memory_segments_headers.txt
+        COMMAND objdump -t $<TARGET_FILE:memory_segments> > ${CMAKE_BINARY_DIR}/memory_segments_symbols.txt
+        COMMAND size $<TARGET_FILE:memory_segments> > ${CMAKE_BINARY_DIR}/memory_segments_size.txt
         DEPENDS memory_segments
+        COMMENT "Generating Linux ELF info"
+    )
+
+add_custom_target(elf_info ALL
+        DEPENDS ${CMAKE_BINARY_DIR}/memory_segments_headers.txt
     )
 else()
     message(FATAL_ERROR "Unsupported platform for post-build analysis.")

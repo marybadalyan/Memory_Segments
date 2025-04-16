@@ -4,38 +4,38 @@
 
 Memory segments are distinct regions in a program's memory layout, each serving a specific purpose during execution. They are managed by the operating system and the compiler to organize a program's data and instructions efficiently.
 
-1. Overview of Memory Segments
+# Overview of Memory Segments
 A program's memory is typically divided into the following segments:
 
 ## Text (Code) Segment:
-Purpose: Stores the compiled machine code (instructions) of the program.
-Access: Read-only, executable.
-Typical Size: Depends on the program's complexity (e.g., a few KB to MB).
-Mapping: Loaded from the executable file's text section into memory.
+- Purpose: Stores the compiled machine code (instructions) of the program.
+- Access: Read-only, executable.
+- Typical Size: Depends on the program's complexity (e.g., a few KB to MB).
+- Mapping: Loaded from the executable file's text section into memory.
 
 ## Data Segment:
-Purpose: Stores initialized global and static variables (e.g., int x = 10;).
-Access: Read-write.
-Typical Size: Proportional to the number of initialized variables (e.g., KB).
-Mapping: Loaded from the executable's data section.
+- Purpose: Stores initialized global and static variables (e.g., int x = 10;).
+- Access: Read-write.
+- Typical Size: Proportional to the number of initialized variables (e.g., KB).
+- Mapping: Loaded from the executable's data section.
 
 ## BSS Segment:
-Purpose: Stores uninitialized global and static variables (e.g., static int y;).
-Access: Read-write.
-Typical Size: Proportional to uninitialized variables (e.g., KB). Often zeroed out by the OS, so it doesn't occupy space in the executable file.
-Mapping: Allocated at runtime, initialized to zero.
+- Purpose: Stores uninitialized global and static variables (e.g., static int y;).
+- Access: Read-write.
+- Typical Size: Proportional to uninitialized variables (e.g., KB). Often zeroed out by the OS, so it doesn't   occupy space in the executable file.
+- Mapping: Allocated at runtime, initialized to zero.
 
 ## Stack Segment:
-Purpose: Stores local variables, function call frames, and return addresses.
-Access: Read-write.
-Typical Size: Fixed or dynamically adjustable (e.g., 1 MB default on Linux, adjustable via ulimit).
-Mapping: Grows downward (in most architectures) and is managed by the OS.
+- Purpose: Stores local variables, function call frames, and return addresses.
+- Access: Read-write.
+- Typical Size: Fixed or dynamically adjustable (e.g., 1 MB default on Linux, adjustable via ulimit).
+- Mapping: Grows downward (in most architectures) and is managed by the OS.
 
 ## Heap Segment:
-Purpose: Stores dynamically allocated memory (e.g., via malloc or new).
-Access: Read-write.
-Typical Size: Grows as needed, limited by system memory (e.g., MB to GB).
-Mapping: Managed by the runtime library and OS, grows upward.
+- Purpose: Stores dynamically allocated memory (e.g., via malloc or new).
+- Access: Read-write.
+- Typical Size: Grows as needed, limited by system memory (e.g., MB to GB).
+- Mapping: Managed by the runtime library and OS, grows upward.
 
 ## Build Instructions
 
@@ -64,20 +64,20 @@ Mapping: Managed by the runtime library and OS, grows upward.
 Compiler optimization flags (e.g., -O0, -O1, -O2, -O3 in GCC) modify how the compiler generates code, which impacts memory segment sizes:
 
 # Text Segment:
-Optimization Impact: Higher optimization levels (-O2, -O3) inline functions, unroll loops, and remove redundant instructions, reducing code size in some cases. However, aggressive optimizations like loop unrolling can increase code size if more instructions are generated.
-Example: -O0 (no optimization) includes debugging info and unoptimized code, inflating the text segment. -O3 may shrink it by removing dead code but could grow it with inlining.
+ - Optimization Impact: Higher optimization levels (-O2, -O3) inline functions, unroll loops, and remove redundant  instructions, reducing code size in some cases. However, aggressive optimizations like loop unrolling can increase code size if more instructions are generated.
+- Example: -O0 (no optimization) includes debugging info and unoptimized code, inflating the text segment. -O3 may  shrink it by removing dead code but could grow it with inlining.
 
 # Data and BSS Segments:
-Optimization Impact: Optimizations may reduce the number of global/static variables by promoting them to registers or eliminating unused variables, shrinking these segments.
-Example: A variable marked static but unused may be removed with -O2, reducing BSS size.
+- Optimization Impact: Optimizations may reduce the number of global/static variables by promoting them to registers or eliminating unused variables, shrinking these segments.
+- Example: A variable marked static but unused may be removed with -O2, reducing BSS size.
 
 # Stack Segment:
-Optimization Impact: Optimizations reduce stack usage by minimizing local variables or reusing stack space. For example, -O2 may eliminate temporary variables, reducing stack frame size.
-Example: A function with many local arrays may use less stack space with -O3 due to variable reuse.
+- Optimization Impact: Optimizations reduce stack usage by minimizing local variables or reusing stack space. For example, -O2 may eliminate temporary variables, reducing stack frame size.
+- Example: A function with many local arrays may use less stack space with -O3 due to variable reuse.
 
 # Heap Segment:
-Optimization Impact: Indirectly affected if optimizations reduce dynamic memory allocations (e.g., by reusing memory or avoiding unnecessary allocations).
-Example: A loop allocating memory repeatedly might be optimized to reuse a single allocation, reducing heap usage.
+- Optimization Impact: Indirectly affected if optimizations reduce dynamic memory allocations (e.g., by reusing memory or avoiding unnecessary allocations).
+- Example: A loop allocating memory repeatedly might be optimized to reuse a single allocation, reducing heap usage.
 
 
 ### Example: Segment Size Differences

@@ -14,9 +14,9 @@ add_executable(memory_segments main.cpp)
 if(MSVC)
     add_custom_target(dumpbin_info ALL
         COMMAND ${CMAKE_COMMAND} -E echo "Dumping PE info (MSVC)"
-        COMMAND cmd /c "dumpbin /headers \"$<TARGET_FILE:memory_segments>\" > \"${CMAKE_BINARY_DIR}/memory_segments_headers.txt\""
-        COMMAND cmd /c "dumpbin /symbols \"$<TARGET_FILE:memory_segments>\" > \"${CMAKE_BINARY_DIR}/memory_segments_symbols.txt\""
-        COMMAND cmd /c "dumpbin /all \"$<TARGET_FILE:memory_segments>\" > \"${CMAKE_BINARY_DIR}/memory_segments_all.txt\""
+        COMMAND cmd /c "dumpbin /headers \"$<TARGET_FILE:memory_segments>\" > \"${CMAKE_BINARY_DIR}/analysis/memory_segments_headers.txt\""
+        COMMAND cmd /c "dumpbin /symbols \"$<TARGET_FILE:memory_segments>\" > \"${CMAKE_BINARY_DIR}/analysis/memory_segments_symbols.txt\""
+        COMMAND cmd /c "dumpbin /all \"$<TARGET_FILE:memory_segments>\" > \"${CMAKE_BINARY_DIR}/analysis/memory_segments_all.txt\""
         DEPENDS memory_segments
     )
 else()
@@ -25,9 +25,9 @@ else()
                ${CMAKE_BINARY_DIR}/memory_segments_symbols.txt
                ${CMAKE_BINARY_DIR}/memory_segments_size.txt
         COMMAND ${CMAKE_COMMAND} -E echo "Dumping ELF info (Unix)"
-        COMMAND readelf -S "$<TARGET_FILE:memory_segments>" > "${CMAKE_BINARY_DIR}/memory_segments_headers.txt"
-        COMMAND objdump -t "$<TARGET_FILE:memory_segments>" > "${CMAKE_BINARY_DIR}/memory_segments_symbols.txt"
-        COMMAND size "$<TARGET_FILE:memory_segments>" > "${CMAKE_BINARY_DIR}/memory_segments_size.txt"
+        COMMAND readelf -S "$<TARGET_FILE:memory_segments>" > "${CMAKE_BINARY_DIR}/analysis/memory_segments_headers.txt"
+        COMMAND objdump -t "$<TARGET_FILE:memory_segments>" > "${CMAKE_BINARY_DIR}/analysis/memory_segments_symbols.txt"
+        COMMAND size "$<TARGET_FILE:memory_segments>" > "${CMAKE_BINARY_DIR}/analysis/memory_segments_size.txt"
         DEPENDS memory_segments
         COMMENT "Generating Linux ELF info"
     )

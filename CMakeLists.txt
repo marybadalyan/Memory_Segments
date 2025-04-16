@@ -17,9 +17,8 @@ if(MSVC)
         
         # Dumpbin on executable
         COMMAND cmd /c "dumpbin /headers \"$<TARGET_FILE:memory_segments>\" > \"${CMAKE_BINARY_DIR}/analysis/memory_segments_headers.txt\""
-        COMMAND cmd /c "dumpbin /symbols \"$<TARGET_FILE:memory_segments>\" > \"${CMAKE_BINARY_DIR}/analysis/memory_segments_symbols.txt\""
+        #COMMAND cmd /c "dumpbin /symbols \"$<TARGET_FILE:memory_segments>\" > \"${CMAKE_BINARY_DIR}/analysis/memory_segments_symbols.txt\""
         COMMAND cmd /c "dumpbin /all \"$<TARGET_FILE:memory_segments>\" > \"${CMAKE_BINARY_DIR}/analysis/memory_segments_all.txt\""
-
         # Dumpbin on .obj file (main.cpp.obj path)
         COMMAND cmd /c "dumpbin /symbols \"${CMAKE_BINARY_DIR}\\memory_segments.dir\\Release\\main.obj\" > \"${CMAKE_BINARY_DIR}\\analysis\\main_obj_symbols.txt\""
 

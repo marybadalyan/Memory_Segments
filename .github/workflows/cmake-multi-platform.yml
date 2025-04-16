@@ -85,7 +85,7 @@ jobs:
           # On Windows, we should ensure that we run in the correct directory
           executable_path="${{ github.workspace }}\\build\\${{ matrix.build_type }}\\$executable"  # Absolute path for Windows
         else
-          executable_path="${{ github.workspace }}/build/$executable"  # Absolute path for Linux/macOS
+          executable_path="${{ github.workspace }}/build/Release/$executable"  # Absolute path for Linux/macOS
         fi
         
         # Check if the file exists before trying to run it

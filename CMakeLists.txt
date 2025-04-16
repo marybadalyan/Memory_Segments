@@ -20,11 +20,14 @@ if(MSVC)
         DEPENDS memory_segments
     )
 elseif(UNIX)
+    # Get the full path to the built binary and store in a variable
+    get_target_property(MEM_SEG_PATH memory_segments LOCATION)
+
     add_custom_target(elf_info ALL
         COMMAND ${CMAKE_COMMAND} -E echo "Dumping ELF info (Unix)"
-        COMMAND ${CMAKE_COMMAND} -E sh -c "readelf -S '$<TARGET_FILE:memory_segments>' > '${CMAKE_BINARY_DIR}/memory_segments_headers.txt'"
-        COMMAND ${CMAKE_COMMAND} -E sh -c "objdump -t '$<TARGET_FILE:memory_segments>' > '${CMAKE_BINARY_DIR}/memory_segments_symbols.txt'"
-        COMMAND ${CMAKE_COMMAND} -E sh -c "size '$<TARGET_FILE:memory_segments>' > '${CMAKE_BINARY_DIR}/memory_segments_size.txt'"
+        COMMAND readelf -S "${MEM_SEG_PATH}" > "${CMAKE_BINARY_DIR}/memory_segments_headers.txt"
+        COMMAND objdump -t "${MEM_SEG_PATH}" > "${CMAKE_BINARY_DIR}/memory_segments_symbols.txt"
+        COMMAND size "${MEM_SEG_PATH}" > "${CMAKE_BINARY_DIR}/memory_segments_size.txt"
         DEPENDS memory_segments
     )
 else()

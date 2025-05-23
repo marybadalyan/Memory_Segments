@@ -2,7 +2,7 @@ Microsoft (R) COFF/PE Dumper Version 14.43.34808.0
 Copyright (C) Microsoft Corporation.  All rights reserved.
 
 
-Dump of file C:\Users\MeriBadalyan\Memory_Segments\build\Debug\memory_segments.exe
+Dump of file C:\Users\MeriBadalyan\Memory_Segments\build\Release\memory_segments.exe
 
 PE signature found
 
@@ -10,8 +10,8 @@ File Type: EXECUTABLE IMAGE
 
 FILE HEADER VALUES
             8664 machine (x64)
-               8 number of sections
-        67FFCB84 time date stamp Wed Apr 16 19:23:48 2025
+               6 number of sections
+        683080BD time date stamp Fri May 23 18:05:49 2025
                0 file pointer to symbol table
                0 number of symbols
               F0 size of optional header
@@ -22,19 +22,19 @@ FILE HEADER VALUES
 OPTIONAL HEADER VALUES
              20B magic # (PE32+)
            14.43 linker version
-            9000 size of code
-            7200 size of initialized data
+            3800 size of code
+            4800 size of initialized data
                0 size of uninitialized data
-            11F4 entry point (00000001400011F4) @ILT+495(mainCRTStartup)
+            38FC entry point (00000001400038FC)
             1000 base of code
-       140000000 image base (0000000140000000 to 0000000140014FFF)
+       140000000 image base (0000000140000000 to 000000014000CFFF)
             1000 section alignment
              200 file alignment
             6.00 operating system version
             0.00 image version
             6.00 subsystem version
                0 Win32 version
-           15000 size of image
+            D000 size of image
              400 size of headers
                0 checksum
                3 subsystem (Windows CUI)
@@ -50,18 +50,18 @@ OPTIONAL HEADER VALUES
                0 loader flags
               10 number of directories
                0 [       0] RVA [size] of Export Directory
-           10528 [      78] RVA [size] of Import Directory
-           13000 [     43C] RVA [size] of Resource Directory
-            F000 [     708] RVA [size] of Exception Directory
+            699C [      DC] RVA [size] of Import Directory
+            B000 [     1E0] RVA [size] of Resource Directory
+            A000 [     474] RVA [size] of Exception Directory
                0 [       0] RVA [size] of Certificates Directory
-           14000 [      90] RVA [size] of Base Relocation Directory
-            BB30 [      38] RVA [size] of Debug Directory
+            C000 [      94] RVA [size] of Base Relocation Directory
+            5930 [      1C] RVA [size] of Debug Directory
                0 [       0] RVA [size] of Architecture Directory
                0 [       0] RVA [size] of Global Pointer Directory
                0 [       0] RVA [size] of Thread Storage Directory
-            B9B0 [     140] RVA [size] of Load Configuration Directory
+            57F0 [     140] RVA [size] of Load Configuration Directory
                0 [       0] RVA [size] of Bound Import Directory
-           10000 [     528] RVA [size] of Import Address Table Directory
+            5000 [     458] RVA [size] of Import Address Table Directory
                0 [       0] RVA [size] of Delay Import Directory
                0 [       0] RVA [size] of COM Descriptor Directory
                0 [       0] RVA [size] of Reserved Directory
@@ -69,10 +69,10 @@ OPTIONAL HEADER VALUES
 
 SECTION HEADER #1
    .text name
-    8EB3 virtual size
-    1000 virtual address (0000000140001000 to 0000000140009EB2)
-    9000 size of raw data
-     400 file pointer to raw data (00000400 to 000093FF)
+    368B virtual size
+    1000 virtual address (0000000140001000 to 000000014000468A)
+    3800 size of raw data
+     400 file pointer to raw data (00000400 to 00003BFF)
        0 file pointer to relocation table
        0 file pointer to line numbers
        0 number of relocations
@@ -83,10 +83,10 @@ SECTION HEADER #1
 
 SECTION HEADER #2
   .rdata name
-    37D2 virtual size
-    A000 virtual address (000000014000A000 to 000000014000D7D1)
-    3800 size of raw data
-    9400 file pointer to raw data (00009400 to 0000CBFF)
+    335E virtual size
+    5000 virtual address (0000000140005000 to 000000014000835D)
+    3400 size of raw data
+    3C00 file pointer to raw data (00003C00 to 00006FFF)
        0 file pointer to relocation table
        0 file pointer to line numbers
        0 number of relocations
@@ -99,15 +99,14 @@ SECTION HEADER #2
 
         Time Type        Size      RVA  Pointer
     -------- ------- -------- -------- --------
-    67FFCB84 cv            5E 0000C3E8     B7E8    Format: RSDS, {4F766861-3674-493C-98B1-A17C9C570017}, 1, C:\Users\MeriBadalyan\Memory_Segments\build\Debug\memory_segments.pdb
-    67FFCB84 feat          14 0000C448     B848    Counts: Pre-VC++ 11.00=0, C/C++=40, /GS=40, /sdl=0, guardN=39
+    683080BD coffgrp      30C 00005FE4     4BE4
 
 SECTION HEADER #3
    .data name
-     C31 virtual size
-    E000 virtual address (000000014000E000 to 000000014000EC30)
-     600 size of raw data
-    CC00 file pointer to raw data (0000CC00 to 0000D1FF)
+     930 virtual size
+    9000 virtual address (0000000140009000 to 000000014000992F)
+     400 size of raw data
+    7000 file pointer to raw data (00007000 to 000073FF)
        0 file pointer to relocation table
        0 file pointer to line numbers
        0 number of relocations
@@ -118,10 +117,10 @@ C0000040 flags
 
 SECTION HEADER #4
   .pdata name
-     8E8 virtual size
-    F000 virtual address (000000014000F000 to 000000014000F8E7)
-     A00 size of raw data
-    D200 file pointer to raw data (0000D200 to 0000DBFF)
+     474 virtual size
+    A000 virtual address (000000014000A000 to 000000014000A473)
+     600 size of raw data
+    7400 file pointer to raw data (00007400 to 000079FF)
        0 file pointer to relocation table
        0 file pointer to line numbers
        0 number of relocations
@@ -131,11 +130,11 @@ SECTION HEADER #4
          Read Only
 
 SECTION HEADER #5
-  .idata name
-    1719 virtual size
-   10000 virtual address (0000000140010000 to 0000000140011718)
-    1800 size of raw data
-    DC00 file pointer to raw data (0000DC00 to 0000F3FF)
+   .rsrc name
+     1E0 virtual size
+    B000 virtual address (000000014000B000 to 000000014000B1DF)
+     200 size of raw data
+    7A00 file pointer to raw data (00007A00 to 00007BFF)
        0 file pointer to relocation table
        0 file pointer to line numbers
        0 number of relocations
@@ -145,39 +144,11 @@ SECTION HEADER #5
          Read Only
 
 SECTION HEADER #6
-  .00cfg name
-     175 virtual size
-   12000 virtual address (0000000140012000 to 0000000140012174)
-     200 size of raw data
-    F400 file pointer to raw data (0000F400 to 0000F5FF)
-       0 file pointer to relocation table
-       0 file pointer to line numbers
-       0 number of relocations
-       0 number of line numbers
-40000040 flags
-         Initialized Data
-         Read Only
-
-SECTION HEADER #7
-   .rsrc name
-     43C virtual size
-   13000 virtual address (0000000140013000 to 000000014001343B)
-     600 size of raw data
-    F600 file pointer to raw data (0000F600 to 0000FBFF)
-       0 file pointer to relocation table
-       0 file pointer to line numbers
-       0 number of relocations
-       0 number of line numbers
-40000040 flags
-         Initialized Data
-         Read Only
-
-SECTION HEADER #8
   .reloc name
-     1D7 virtual size
-   14000 virtual address (0000000140014000 to 00000001400141D6)
+      94 virtual size
+    C000 virtual address (000000014000C000 to 000000014000C093)
      200 size of raw data
-    FC00 file pointer to raw data (0000FC00 to 0000FDFF)
+    7C00 file pointer to raw data (00007C00 to 00007DFF)
        0 file pointer to relocation table
        0 file pointer to line numbers
        0 number of relocations
@@ -189,11 +160,9 @@ SECTION HEADER #8
 
   Summary
 
-        1000 .00cfg
         1000 .data
-        2000 .idata
         1000 .pdata
         4000 .rdata
         1000 .reloc
         1000 .rsrc
-        9000 .text
+        4000 .text

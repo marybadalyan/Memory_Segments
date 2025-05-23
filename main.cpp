@@ -71,17 +71,29 @@ void parse_pe(const std::string& path) {
     std::cout << "- Image base: 0x" << optionalHeader.ImageBase << "\n";
     std::cout << "- Subsystem: " << optionalHeader.Subsystem << "\n";
     std::cout << "- Size of image: 0x" << optionalHeader.SizeOfImage << "\n";
-
+    std::cout << "- Size of headers: 0x" << optionalHeader.SizeOfHeaders << "\n";
+    std::cout << "- Number of sections: " << fileHeader.NumberOfSections << "\n";
+    std::cout << "- Size of headers: 0x" << optionalHeader.SizeOfHeaders << "\n";   
     // Section Headers
     std::cout << "\nSections:\n";
-    file.seekg(dosHeader.e_lfanew + sizeof(DWORD) + sizeof(IMAGE_FILE_HEADER) + fileHeader.SizeOfOptionalHeader, std::ios::beg);
-    for (int i = 0; i < fileHeader.NumberOfSections; ++i) {
-        IMAGE_SECTION_HEADER section;
-        file.read(reinterpret_cast<char*>(&section), sizeof(section));
-        std::cout << "  - " << std::string(reinterpret_cast<char*>(section.Name), 8)
-                  << "\n    RVA: 0x" << std::hex << section.VirtualAddress
-                  << ", Size: 0x" << section.Misc.VirtualSize << "\n";
-    }
+file.seekg(dosHeader.e_lfanew + sizeof(DWORD) + sizeof(IMAGE_FILE_HEADER) + fileHeader.SizeOfOptionalHeader, std::ios::beg);
+for (int i = 0; i < fileHeader.NumberOfSections; ++i) {
+    IMAGE_SECTION_HEADER section;
+    file.read(reinterpret_cast<char*>(&section), sizeof(section));
+
+    std::string name(reinterpret_cast<char*>(section.Name), 8);
+    name.erase(std::find(name.begin(), name.end(), '\0'), name.end());
+
+    std::cout << "  - " << name << "\n"
+              << "    Virtual Size:       0x" << std::hex << section.Misc.VirtualSize << "\n"
+              << "    Virtual Address:    0x" << std::hex << section.VirtualAddress << "\n"
+              << "    Size of Raw Data:   0x" << std::hex << section.SizeOfRawData << "\n"
+              << "    Pointer to Raw Data:0x" << std::hex << section.PointerToRawData << "\n"
+              << "    Characteristics:    0x" << std::hex << section.Characteristics << "\n";
+}
+    std::cout << "\n";
+    std::cout << "PE parsing completed.\n";
+    file.close();
 }
 
 #else // Linux ELF parsing
@@ -132,6 +144,9 @@ void parse_elf(const std::string& path) {
                   << " (Addr: 0x" << std::hex << sections[i].sh_addr
                   << ", Size: 0x" << sections[i].sh_size << ")\n";
     }
+    std::cout << "\n";
+    std::cout << "ELF parsing completed.\n";
+    file.close();
 }
 
 #endif

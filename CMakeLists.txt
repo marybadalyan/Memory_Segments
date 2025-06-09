@@ -16,7 +16,7 @@ if(MSVC)
         COMMAND ${CMAKE_COMMAND} -E echo "Dumping PE + OBJ info (MSVC)"
         
         # Dumpbin on executable
-        COMMAND cmd /c "dumpbin /headers \"$<TARGET_FILE:memory_segments>\" > \"${CMAKE_BINARY_DIR}/analysis/memory_segments_headers.txt\""
+        COMMAND cmd /c "dumpbin /DISASM \"$<TARGET_FILE:memory_segments>\" > \"${CMAKE_BINARY_DIR}/analysis/memory_segments_headers.txt\""
         #COMMAND cmd /c "dumpbin /symbols \"$<TARGET_FILE:memory_segments>\" > \"${CMAKE_BINARY_DIR}/analysis/memory_segments_symbols.txt\""
         COMMAND cmd /c "dumpbin /all \"$<TARGET_FILE:memory_segments>\" > \"${CMAKE_BINARY_DIR}/analysis/memory_segments_all.txt\""
         # Dumpbin on .obj file (main.cpp.obj path)
